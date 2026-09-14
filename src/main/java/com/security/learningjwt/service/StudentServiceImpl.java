@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
         }
 
         logger.info("Creating student with email: " + studentRequestDto.getEmail());
-        simulateSlowOperation();
+//        simulateSlowOperation();
 
         Student student = new Student();
         student.setFirstName(studentRequestDto.getFirstName());
@@ -62,7 +62,7 @@ public class StudentServiceImpl implements StudentService {
         List<Student> students = studentRepository.findAll();
 
         logger.info("Retrieved " + students.size() + " students from the database");
-        simulateSlowOperation();
+//        simulateSlowOperation();
 
         return students.stream().map(student -> {
             StudentResponseDto studentResponseDto = new StudentResponseDto();
@@ -84,7 +84,7 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + studentId));
 
         logger.info("Retrieved student with id: " + studentId);
-        simulateSlowOperation();
+//        simulateSlowOperation();
 
         StudentResponseDto studentResponseDto = new StudentResponseDto();
         studentResponseDto.setId(student.getId());
@@ -112,7 +112,7 @@ public class StudentServiceImpl implements StudentService {
         }
 
         logger.info("Updating student with id: " + studentId + " to have email: " + studentRequestDto.getEmail());
-        simulateSlowOperation();
+//        simulateSlowOperation();
 
         student.setFirstName(studentRequestDto.getFirstName());
         student.setLastName(studentRequestDto.getLastName());
@@ -144,16 +144,16 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + studentId));
 
         logger.info("Deleting student with id: " + studentId);
-        simulateSlowOperation();
+//        simulateSlowOperation();
 
         studentRepository.delete(student);
     }
 
-    private void simulateSlowOperation() {
-        try {
-            Thread.sleep(1000); // Simulate a 1-second delay
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
+//    private void simulateSlowOperation() {
+//        try {
+//            Thread.sleep(1000); // Simulate a 1-second delay
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+//    }
 }
